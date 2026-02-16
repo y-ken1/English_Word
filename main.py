@@ -65,18 +65,21 @@ def main():
             word, meanings = random.choice(words)
 
             for i in range(1):
-                clear()
-                print(f"▶ {word}")
+                # clear()
+                print(f"\n")
+                print(f"\033[97m▶ {word}\033[0m")
 
+                # 読み上げる
                 # speak(word)
-                time.sleep(0.4)
+
+                time.sleep(0.8)
 
                 # clear()
                 # print(f"▶ {word}")
                 for m in meanings:
-                    print(f"  - {m}")
+                    print(f"\033[90m  {m}\033[0m")
 
-                time.sleep(0.5)
+                time.sleep(1)
     except KeyboardInterrupt:
         clear()
         print("終了しました")
