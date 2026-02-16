@@ -64,19 +64,19 @@ def main():
         while True:
             word, meanings = random.choice(words)
 
-            for i in range(2):
+            for i in range(1):
                 clear()
                 print(f"▶ {word}")
 
-                speak(word)
-                time.sleep(1)
+                # speak(word)
+                time.sleep(0.4)
 
-                clear()
-                print(f"▶ {word}")
+                # clear()
+                # print(f"▶ {word}")
                 for m in meanings:
                     print(f"  - {m}")
 
-                time.sleep(1)
+                time.sleep(0.5)
     except KeyboardInterrupt:
         clear()
         print("終了しました")
