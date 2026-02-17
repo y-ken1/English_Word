@@ -54,7 +54,33 @@ def load_all_words(directory):
 
 
 def main():
-    words = load_all_words(DATA_DIR)
+
+    # 1. 音声読み上げの確認
+    is_speak = (
+        input("音声読み上げを有効にしますか？ (y/n) [default: n]: ").lower() == "n"
+    )
+
+    # 2. ファイル指定の確認
+    print(f"\nデータディレクトリ: {DATA_DIR}")
+    files = list(DATA_DIR.glob("*.md"))
+
+    if not files:
+        print("ファイルが見つかりません。")
+        return
+
+    print("0: すべてのファイル (現状どおり)")
+    for i, f in enumerate(files, 1):
+        print(f"{i}: {f.name}")
+
+    choice = input("\n読み込むファイルの番号を入力してください [default: 0]: ")
+
+    if choice.isdigit() and 0 < int(choice) <= len(files):
+        target_file = files[int(choice) - 1]
+        words = load_words_from_file(target_file)
+        print(f"--- '{target_file.name}' を読み込みました ---")
+    else:
+        words = load_all_words(DATA_DIR)
+        print("--- すべてのファイルを読み込みました ---")
 
     if not words:
         print("単語が見つかりません")
@@ -70,9 +96,10 @@ def main():
                 print(f"\033[97m▶ {word}\033[0m")
 
                 # 読み上げる
-                speak(word)
-
-                # time.sleep(0.8)
+                if is_speak:
+                    speak(word)
+                else:
+                    time.sleep(0.8)
 
                 # clear()
                 # print(f"▶ {word}")
