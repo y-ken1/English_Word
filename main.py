@@ -70,9 +70,9 @@ def main():
                 print(f"\033[97m▶ {word}\033[0m")
 
                 # 読み上げる
-                # speak(word)
+                speak(word)
 
-                time.sleep(0.8)
+                # time.sleep(0.8)
 
                 # clear()
                 # print(f"▶ {word}")
